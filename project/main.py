@@ -1,8 +1,4 @@
-from src.utils import *
-from src.crop_disease_dataset import *
-from src.model import *
-from src.train import *
-from src.evaluation import *
+from src.init import *
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
