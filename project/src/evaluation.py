@@ -130,7 +130,7 @@ def count_incorrect_predictions(incorrect_examples):
         dict: A dictionary where keys are class labels and values are the number of incorrect predictions for each class.
     """
     incorrect_counts = defaultdict(int)
-    
+
     for _, label, _ in incorrect_examples:
         incorrect_counts[label.item()] += 1
 

@@ -10,21 +10,21 @@ Original file is located at
 import time
 import torch
 
-# Sélection du dispositif (CPU ou GPU)
+# Device selection (CPU or GPU)
 device = 'cpu'
 if torch.cuda.is_available():
     device = 'cuda'
 
 def epoch_time(start_time, end_time):
     """
-    Calcule le temps écoulé entre deux moments en minutes et secondes.
+    Calculates the time elapsed between two moments in minutes and seconds.
 
     Args:
-        start_time (float): Temps de début.
-        end_time (float): Temps de fin.
+        start_time (float): Start time.
+        end_time (float): End time.
 
     Returns:
-        tuple: Temps écoulé en minutes et secondes.
+        tuple: Elapsed time in minutes and seconds.
     """
     elapsed_time = end_time - start_time
     elapsed_mins = int(elapsed_time / 60)
@@ -33,19 +33,19 @@ def epoch_time(start_time, end_time):
 
 def train(model, num_epochs, trainloader, testloader, criterion, optimizer, validation_phase=False):
     """
-    Entraîne le modèle spécifié pour un certain nombre d'époques.
+    Drives the specified model for a number of epochs.
 
     Args:
-        model (nn.Module): Le modèle PyTorch à entraîner.
-        num_epochs (int): Le nombre d'époques d'entraînement.
-        trainloader (DataLoader): DataLoader pour l'ensemble d'entraînement.
-        testloader (DataLoader): DataLoader pour l'ensemble de test.
-        criterion: La fonction de perte à utiliser pour calculer l'erreur.
-        optimizer: L'optimiseur utilisé pour la mise à jour des poids du modèle.
-        validation_phase (bool): Indique si la phase actuelle est la validation.
+        model (nn.Module): The PyTorch model to be trained.
+        num_epochs (int): The number of training epochs.
+        trainloader (DataLoader): DataLoader for the training set.
+        testloader (DataLoader): DataLoader for the test set.
+        criterion: The loss function to be used to calculate the error.
+        optimizer: The optimizer used to update the model weights.
+        validation_phase (bool): Indicates whether the current phase is validation.
 
     Returns:
-        tuple: Les moyennes des pertes d'entraînement et de test, ainsi que les précisions d'entraînement et de test.
+        tuple: The averages of the training and test losses, as well as the training and test accuracies.
     """
     train_avg_loss = []
     test_avg_loss = []
@@ -70,7 +70,7 @@ def train(model, num_epochs, trainloader, testloader, criterion, optimizer, vali
             loss.backward()
             optimizer.step()
 
-            # Calcul de la précision d'entraînement
+            # Calculation of drive accuracy
             y_pred_train = pred.argmax(dim=-1)
             correct_train += (y_pred_train == y).sum().item()
             total_train += y.size(0)
@@ -92,7 +92,7 @@ def train(model, num_epochs, trainloader, testloader, criterion, optimizer, vali
                 correct_test += (y_pred_test == y).sum().item()
                 total_test += y.size(0)
 
-            # Calcul de la précision
+            # Computing accuracy
             accuracy_train = correct_train / total_train
             accuracy_test = correct_test / total_test
             test_accuracy.append(accuracy_test)
@@ -110,7 +110,7 @@ def train(model, num_epochs, trainloader, testloader, criterion, optimizer, vali
 
         train_accuracy.append(accuracy_train)
 
-    # Sauvegarde du modèle à la fin de l'entraînement
+    # Saving the model at the end of training
     torch.save(model.state_dict(), 'model.pt')
 
     return train_avg_loss, test_avg_loss, test_accuracy, train_accuracy
