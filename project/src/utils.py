@@ -122,7 +122,7 @@ def plot_class_histogram(class_counts):
     plt.tight_layout()
     plt.show()
 
-def plot_training_results(train_avg_loss, validation_avg_loss, validation_accuracy, is_validation=True):
+def plot_training_results(train_avg_loss, validation_avg_loss, train_accuracy, validation_accuracy, is_validation=True):
     """
     Defines a method to plot training results.
 
@@ -151,6 +151,7 @@ def plot_training_results(train_avg_loss, validation_avg_loss, validation_accura
 
     # Plot validation/test accuracy
     ax2.plot(validation_accuracy, label=accuracy_label)
+    ax2.plot(train_accuracy, label='Train Accuracy')
     ax2.set_xlabel('Epoch')
     ax2.set_ylabel('Accuracy')
     ax2.legend(loc='upper left')
