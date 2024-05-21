@@ -51,7 +51,7 @@ def process_dataset(extracted_folder, gray_scale=False, segmented=False):
     optimizer = torch.optim.Adam(network.parameters(), lr=learning_rate)
 
     train_avg_loss, test_avg_loss, test_accuracy, train_accuracy = train(network, num_epochs, combined_train_loader, testloader, criterion, optimizer, validation_phase=False)
-    plot_training_results(train_avg_loss, test_avg_loss, test_accuracy, is_validation=False)
+    plot_training_results(train_avg_loss, test_avg_loss, train_accuracy, test_accuracy, is_validation=False)
 
     # Save the model state with dynamic naming
     model_save_path = f'model_{extracted_folder.replace("/", "_")}.pt'
