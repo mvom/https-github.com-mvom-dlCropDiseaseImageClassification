@@ -38,7 +38,7 @@ def process_dataset(extracted_folder, gray_scale=False, segmented=False):
 
     # Train the model
     train_avg_loss, validation_avg_loss, validation_accuracy, train_accuracy = train(network, num_epochs, trainloader, validationloader, criterion, optimizer, validation_phase=True)
-    plot_training_results(train_avg_loss, validation_avg_loss, validation_accuracy, is_validation=True)
+    plot_training_results(train_avg_loss, validation_avg_loss, train_accuracy, validation_accuracy, is_validation=True)
 
     # Combine training and validation datasets for testing the model
     combined_train_set = ConcatDataset([train_set, validation_set])
