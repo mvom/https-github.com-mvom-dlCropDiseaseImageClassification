@@ -28,7 +28,7 @@ def process_dataset(extracted_folder, gray_scale=False, segmented=False):
 
     # Define hyperparameters
     learning_rate = 1e-3
-    num_epochs = 20
+    num_epochs = 25
 
     # Initialize the network and optimizer
     network = CNN(gray_scale=gray_scale).to(device)
